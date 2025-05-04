@@ -5,9 +5,9 @@ namespace App\Models;
 use App\Models\Arsip;
 use Illuminate\Database\Eloquent\Model;
 
-class KlasifikasiArsip extends Model
+class UraianArsip extends Model
 {
-    public function arsips(){
+    public function arsip(){
         return $this->belongsTo(Arsip::class);
     }
 }
