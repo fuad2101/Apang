@@ -6,7 +6,6 @@ use App\Filament\Resources\KlasifikasiArsipResource\Pages;
 use App\Filament\Resources\KlasifikasiArsipResource\RelationManagers;
 use App\Models\KlasifikasiArsip;
 use Filament\Forms;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -20,16 +19,34 @@ class KlasifikasiArsipResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Arsip';
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('primer'),
-                TextInput::make('sekunder'),
-                TextInput::make('tersier'),
-                TextInput::make('deskripsi'),
+                Forms\Components\TextInput::make('kode_fungsi')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('fungsi')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('kode_kegiatan')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('kegiatan')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('kode_transaksi')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('aktif')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('inaktif')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('uraian_arsip')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -45,6 +62,22 @@ class KlasifikasiArsipResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('kode_fungsi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('fungsi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('kode_kegiatan')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('kegiatan')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('kode_transaksi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('aktif')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('inaktif')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('uraian_arsip')
+                    ->searchable(),
             ])
             ->filters([
                 //

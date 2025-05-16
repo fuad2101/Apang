@@ -51,12 +51,10 @@ class PegawaiResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama'),
                 TextColumn::make('nip'),
-                TextColumn::make('ttl'),
-                TextColumn::make('pangkat'),
-                TextColumn::make('jabatan'),
-                TextColumn::make('substansi'),
+                TextColumn::make('petugas'),
+                TextColumn::make('jabatan_petugas'),
+                TextColumn::make('unit_petugas'),
             ])
             ->filters([
                 //

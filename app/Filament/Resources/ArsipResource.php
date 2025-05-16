@@ -2,16 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ArsipResource\Pages;
-use App\Filament\Resources\ArsipResource\RelationManagers;
-use App\Models\Arsip;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Arsip;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\DateTimePicker;
+use App\Filament\Resources\ArsipResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ArsipResource\RelationManagers;
 
 class ArsipResource extends Resource
 {
@@ -19,7 +23,7 @@ class ArsipResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Pemberkasan';
+    protected static ?string $navigationLabel = 'Pencipta Arsip';
 
     protected static ?string $navigationGroup = 'Arsip';
 
@@ -27,25 +31,32 @@ class ArsipResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('jenis_arsip')
+                TextInput::make('jenis_arsip')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('no_berkas')
+                TextInput::make('no_berkas')
                     ->required()
                     ->maxLength(255)
-                    ->label('No. Arsip'),
-                Forms\Components\TextInput::make('kode_klasifikasi')
+                    ->label('No. Berkas')->disabled(),
+                TextInput::make('kode_klasifikasi')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('uraian_berkas')
+                Select::make('klasifikasi_arsips_id')
+                    ->relationship() ,
+                TextInput::make('uraian_berkas')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('tanggal_berkas')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('unit_pengolah')
-                    ->required()
-                    ->maxLength(255),
+                DatePicker::make('tanggal_berkas')
+                ->required(),
+                Select::make('Unit Pengolah')
+                    ->options([
+                        'infokom'=>'Infokom',
+                        'pengujian'=>'Pengujian',
+                        'pemeriksaan'=>'Pemeriksaan',
+                        'penindakan'=>'Penindakan',
+                        'tata usaha'=>'Tata Usaha',
+                    ]),
+
             ]);
     }
 
