@@ -20,23 +20,21 @@ use App\Filament\Resources\PegawaiResource\RelationManagers;
 class PegawaiResource extends Resource
 {
     protected static ?string $model = Pegawai::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
     protected static ?string $navigationLabel = 'Pegawai';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('nama'),
                 TextInput::make('nip'),
-                DatePicker::make('ttl'),
-                TextInput::make('pangkat'),
-                Select::make('jabatan')
+                TextInput::make('petugas'),
+                Select::make('jabatan_petugas')
                     ->options([
                         'pfm'=>'Pengawas Farmasi Makanan',
                         'Tenaga Administrasi'=>'tenaga administrasi',
                     ]),
-                Select::make('substansi')
+                Select::make('unit_petugas')
                     ->options([
                         'Tata Usaha'=>'Tata Usaha',
                         'Pengujian'=>'Pengujian',
@@ -52,7 +50,7 @@ class PegawaiResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nip'),
-                TextColumn::make('petugas'),
+                TextColumn::make('petugas')->searchable(),
                 TextColumn::make('jabatan_petugas'),
                 TextColumn::make('unit_petugas'),
             ])

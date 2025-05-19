@@ -19,7 +19,7 @@ class UraianArsipResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Arsip';
+    protected static ?string $navigationGroup = 'Kearsipan';
 
     public static function form(Form $form): Form
     {
