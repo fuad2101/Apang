@@ -21,6 +21,8 @@ class UraianArsipResource extends Resource
 
     protected static ?string $navigationGroup = 'Kearsipan';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     public static function form(Form $form): Form
     {
         return $form

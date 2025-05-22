@@ -58,22 +58,27 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationGroups([
                 NavigationGroup::make()
-                ->label('Arsip')
-                ->icon('heroicon-o-shopping-cart')
+                    ->label('Laporan'),
+                NavigationGroup::make()
+                    ->label('Rekapitulasi'),
             ])
-            // ->navigationItems([
-            //     NavigationItem::make('Pemindahan Arsip')
-            //     ->url('https://filament.pirsch.io', shouldOpenInNewTab: true)
-            //     ->icon('heroicon-o-presentation-chart-line')
-            //     ->group('Arsip')
-            //     ->sort(3),
-            //     NavigationItem::make('Pemberkasan')
-            //     ->url()
-            //     ->icon('heroicon-o-presentation-chart-line')
-            //     ->group('Arsip')
-            //     ->sort(2),
-            // ])
-            // ->topNavigation()
+            ->navigationItems([
+                NavigationItem::make('Laporan')
+                    ->url('https://filament.pirsch.io', shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-document-text')
+                    ->group('Rekapitulasi')
+                    ->sort(1),
+                NavigationItem::make('Arsip Aktif')
+                    ->url('https://example.com')
+                    ->icon('heroicon-o-presentation-chart-line')
+                    ->group('Rekapitulasi')
+                    ->sort(2),
+                NavigationItem::make('Pemberkasan')
+                    ->url('https://example.com')
+                    ->icon('heroicon-o-presentation-chart-line')
+                    ->group('Laporan')
+                    ->sort(3),
+            ])
             ->sidebarCollapsibleOnDesktop();
     }
 }
